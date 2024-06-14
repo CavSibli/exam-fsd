@@ -1,4 +1,3 @@
-// import React, { useEffect } from 'react'; 
 import Product from './Product';
 import ProductForm from './ProductForm';
 

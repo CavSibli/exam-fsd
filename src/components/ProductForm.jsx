@@ -1,34 +1,36 @@
-import React, { useState } from 'react';
-// la consigne demande d'envoyer un prop dans ProductForm, le seul prop nécéssaire à ce composant est addProduct et viens de ProductList
-// Je précise car ceci était deja fait lors de l'etape 2 de l'examen
+import React, { useState, useRef } from 'react';
+
 const ProductForm = ({ addProduct }) => {
-    
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
+    // Références pour les champs de formulaire
+    const nameInputRef = useRef(null);
+    const descriptionInputRef = useRef(null);
+    const priceInputRef = useRef(null);
 
-    
     const handleSubmit = (event) => {
-        
         event.preventDefault();
-        
+
         const newProduct = {
             name: name,
             description: description,
-            price: parseFloat(price)  
+            price: parseFloat(price)
         };
 
         addProduct(newProduct);
-        
+
+        // Reset des champs de formulaire
         setName('');
         setDescription('');
         setPrice('');
+
+        // Mettre le focus sur le premier champ (name) après la soumission
+        nameInputRef.current.focus();
+        
     };
 
-
-    // Affiche le formulaire, lance la fonction handleSubmit lorsque le formulaire est soumis, 
-    //garde les saisies et reset les champs de saisie apres la soumision
     return (
         <form onSubmit={handleSubmit}>
             <h2>Add a New Product</h2>
@@ -38,6 +40,7 @@ const ProductForm = ({ addProduct }) => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    ref={nameInputRef} // Ref pour le champ Name qui servira à porter le focus
                     required
                 />
             </label>
@@ -48,6 +51,7 @@ const ProductForm = ({ addProduct }) => {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    ref={descriptionInputRef} // Ref  pour le champ Description, parce que c'est demndédans la consigne 
                     required
                 />
             </label>
@@ -58,6 +62,7 @@ const ProductForm = ({ addProduct }) => {
                     type="number"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
+                    ref={priceInputRef} // Ref  pour le champ Price, parce que c'est demndédans la consigne 
                     required
                 />
             </label>
