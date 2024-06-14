@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-
+// la consigne demande d'envoyer un prop dans ProductForm, le seul prop nécéssaire à ce composant est addProduct et viens de ProductList
+// Je précise car ceci était deja fait lors de l'etape 2 de l'examen
 const ProductForm = ({ addProduct }) => {
-    // declarationd des variables et des fonctions useState
+    
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
 
 
-    // Déclenché au moment de la soumission du form cette fonction gère la récuperation des données du formulaire dans un objet newProduct 
-    // et la passse au composant parent "ProductList"
+    
     const handleSubmit = (event) => {
-        // Empêcher le comportement par défaut du formulaire(sans ça la page se recharge à la soumission du fomulaire)
+        
         event.preventDefault();
-        // Cree un objet newProduct avec les données du formulaire 
+        
         const newProduct = {
             name: name,
             description: description,
             price: parseFloat(price)  
         };
-        // New product est passé au composant parent "ProductList" et ajouté à la liste des produits
+
         addProduct(newProduct);
-        // reset les champs de saisie
+        
         setName('');
         setDescription('');
         setPrice('');
