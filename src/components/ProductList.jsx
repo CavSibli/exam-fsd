@@ -1,4 +1,4 @@
-// import React, { useState } from 'react'; est effacé car plus nécéssaire
+// import React, { useEffect } from 'react'; 
 import Product from './Product';
 import ProductForm from './ProductForm';
 
